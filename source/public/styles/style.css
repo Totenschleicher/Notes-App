@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+html {
+    font-size: 62.5%;
+}
+
+:root {
+    --lightness1: #ffffff;
+    --lightness2: #f2f2f2;
+    --lightness3: #cccccc;
+    --lightness4: #000000;
+    --pastel1: #d9f9ff;
+    --pastel2: #efffd9;
+    --pastel3: #fff9d9;
+    --pastel4: #ffedd9;
+    --pastel5: #ffd8d8;
+    --color1: #00d8ff;
+    --color2: #93ff00;
+    --color3: #ffd800;
+    --color4: #ff8900;
+    --color5: #ff0000;
+}
+
+.theme--dark {
+    --lightness1: #000000;
+    --lightness2: #242424;
+    --lightness3: #575757;
+    --lightness4: #cccccc;
+    --pastel1: #00414d;
+    --pastel2: #2c4d00;
+    --pastel3: #4d4100;
+    --pastel4: #4d2900;
+    --pastel5: #4d0000;
+}
+
+.theme {
+    padding: 5.5rem 2.5rem;
+    background-color: var(--lightness2);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.theme--light {
+    background-image: url("../images/banner-light-small.jpg");
+    background-image: image-set(
+            "../images/banner-light-small.avif" type("image/avif"),
+            "../images/banner-light-small.webp" type("image/webp"),
+            "../images/banner-light-small.jpg" type("image/jpeg")
+    );
+}
+
+.theme--dark {
+    background-image: url("../images/banner-dark-small.jpg");
+    background-image: image-set(
+            "../images/banner-dark-small.avif" type("image/avif"),
+            "../images/banner-dark-small.webp" type("image/webp"),
+            "../images/banner-dark-small.jpg" type("image/jpeg")
+    );
+}
+
+.notesApp {
+    max-width: 100rem;
+    border-radius: 1rem;
+    margin: 0 auto;
+    color: var(--lightness4);
+    background: var(--lightness1);
+}
+
+.header__title {
+    margin: 0;
+}
+
+@media only all and (min-width: 751px) {
+
+    .theme--light {
+        background-image: url("../images/banner-light-big.jpg");
+        background-image: image-set(
+                "../images/banner-light-big.avif" type("image/avif"),
+                "../images/banner-light-big.webp" type("image/webp"),
+                "../images/banner-light-big.jpg" type("image/jpeg")
+        );
+    }
+
+    .theme--dark {
+        background-image: url("../images/banner-dark-big.jpg");
+        background-image: image-set(
+                "../images/banner-dark-big.avif" type("image/avif"),
+                "../images/banner-dark-big.webp" type("image/webp"),
+                "../images/banner-dark-big.jpg" type("image/jpeg")
+        );
+    }
+
+}

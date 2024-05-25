@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notizen App</title>
     <script src="scripts/controllers/notes-controller.js" type="module" defer></script>
-    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/sanitize.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
-<body>
+<body class="theme theme--light">
     <div class="notesApp">
         <header class="header">
-            <h1>Notizen</h1>
+            <h1 class="header__title">Notizen</h1>
             <button type="button" class="header__btnNewNote btn--big">Neue Notiz</button>
             <button type="button" class="header__btnTheme"></button>
             <div>
@@ -32,7 +33,10 @@
             <article class="note">
                 <div>
                     <p class="note__date">In 1 Tag</p>
-                    <p class="note__status"><input type="checkbox" class="note__checkboxStatus" disabled>Offen</p>
+                    <label class="note__status">
+                        <input type="checkbox" class="note__checkboxStatus" disabled>
+                        Offen
+                    </label>
                 </div>
                 <div class="note--importance5">
                     <div class="note__text">
@@ -42,7 +46,7 @@
                     <div class="note__importance"></div>
                 </div>
                 <div>
-                    <button type="button" class="note__btnEdit">Bearbeiten</button>
+                    <button type="button" class="note__btnEdit btn--small">Bearbeiten</button>
                 </div>
             </article>
         </main>
