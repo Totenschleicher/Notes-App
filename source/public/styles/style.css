@@ -10,10 +10,6 @@
 */
 
 
-html {
-    font-size: 62.5%;
-}
-
 :root {
     --lightness1: #ffffff;
     --lightness2: #f2f2f2;
@@ -29,6 +25,11 @@ html {
     --color3: #ffd800;
     --color4: #ff8900;
     --color5: #ff0000;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
 }
 
 .theme {
@@ -88,12 +89,6 @@ html {
     text-transform: uppercase;
 }
 
-.header__imgPlus {
-    width: 1.7rem;
-    height: 1.7rem;
-    margin-right: 1rem;
-}
-
 .header__btnTheme {
     position: absolute;
     top: 2rem;
@@ -105,6 +100,12 @@ html {
     transition: 0.3s;
 }
 
+.header__imgPlus {
+    width: 1.7rem;
+    height: 1.7rem;
+    margin-right: 1rem;
+}
+
 .theme--light .header__btnTheme {
     background: var(--lightness2) center center / 1.5rem url("../images/icon-moon.svg") no-repeat;
 }
@@ -114,7 +115,9 @@ html {
 }
 
 .theme--light .header__btnTheme:hover,
-.theme--dark .header__btnTheme:hover {
+.theme--light .header__btnTheme:focus,
+.theme--dark .header__btnTheme:hover,
+.theme--dark .header__btnTheme:focus {
     background-color: var(--lightness3);
 }
 
@@ -158,6 +161,33 @@ html {
     justify-content: flex-end;
 }
 
+.footer {
+    padding: 4rem;
+    text-align: center;
+}
+
+.footer__btnTop {
+    display: block;
+    width: 3.5rem;
+    height: 3.5rem;
+    border: none;
+    border-radius: 50%;
+    margin: 0 auto;
+    background: var(--lightness2);
+    transition: 0.3s;
+}
+
+.footer__btnTop:hover,
+.footer__btnTop:focus {
+    background: var(--lightness3);
+}
+
+.footer__imgArrowUp {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 1rem;
+}
+
 .btn--small,
 .btn--big {
     padding: 1.2rem 1rem;
@@ -172,7 +202,9 @@ html {
 }
 
 .btn--small:hover,
-.btn--big:hover {
+.btn--small:focus,
+.btn--big:hover,
+.btn--big:focus {
     background: var(--lightness3);
     cursor: pointer;
 }
