@@ -7,25 +7,37 @@
     <script src="scripts/controllers/notes-controller.js" type="module" defer></script>
     <link rel="stylesheet" href="styles/sanitize.css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body class="theme theme--light">
     <div class="notesApp">
         <header class="header">
             <h1 class="header__title">Notizen</h1>
-            <button type="button" class="header__btnNewNote btn--big">Neue Notiz</button>
+            <button type="button" class="header__btnNewNote btn--big">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.612 17.612" class="header__imgPlus">
+                    <path d="M10.964,8.448V2.158a1.258,1.258,0,1,0-2.516,0v6.29H2.158a1.258,1.258,0,1,0,0,2.516h6.29v6.29a1.258,1.258,0,0,0,2.516,0v-6.29h6.29a1.258,1.258,0,0,0,0-2.516Z" transform="translate(-0.9 -0.9)"/>
+                </svg>
+                Neue Notiz
+            </button>
             <button type="button" class="header__btnTheme"></button>
-            <div>
-                <div>
-                    <h3>Sortieren</h3>
-                    <button type="button" class="header__btnName btn--small">Name</button>
-                    <button type="button" class="header__btnDueDate btn--small">Fälligkeitsdatum</button>
-                    <button type="button" class="header__btnCreationDate btn--small">Erstellungsdatum</button>
-                    <button type="button" class="header__btnImportance btn--small">Wichtigkeit</button>
+            <div class="header__control">
+                <div class="header__controlLeft">
+                    <h3 class="header__subtitleLeft">Sortieren</h3>
+                    <div class="header__controlButtonsLeft">
+                        <button type="button" class="header__btnName btn--small">Name</button>
+                        <button type="button" class="header__btnDueDate btn--small">Fälligkeitsdatum</button>
+                        <button type="button" class="header__btnCreationDate btn--small">Erstellungsdatum</button>
+                        <button type="button" class="header__btnImportance btn--small">Wichtigkeit</button>
+                    </div>
                 </div>
-                <div>
-                    <h3>Filtern</h3>
-                    <button type="button" class="header__btnOpen btn--small">Offen</button>
-                    <button type="button" class="header__btnCompleted btn--small">Erledigt</button>
+                <div class="header__controlRight">
+                    <h3 class="header__subtitleRight">Filtern</h3>
+                    <div class="header__controlButtonsRight">
+                        <button type="button" class="header__btnOpen btn--small">Offen</button>
+                        <button type="button" class="header__btnCompleted btn--small">Erledigt</button>
+                    </div>
                 </div>
             </div>
         </header>

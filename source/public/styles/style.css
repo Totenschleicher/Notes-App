@@ -1,4 +1,14 @@
-@charset "UTF-8";
+
+/* Font-Weight Roboto
+
+- Thin:    100
+- Light:   300
+- Regular: 400
+- Bold:    700
+- Black:   900
+
+*/
+
 
 html {
     font-size: 62.5%;
@@ -21,6 +31,23 @@ html {
     --color5: #ff0000;
 }
 
+.theme {
+    padding: 5.5rem 2.5rem;
+    font: 400 1.6rem/1 Roboto, sans-serif;
+    background-color: var(--lightness2);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.theme--light {
+    background-image: url("../images/banner-light-small.jpg");
+    background-image: image-set(
+        "../images/banner-light-small.avif" type("image/avif"),
+        "../images/banner-light-small.webp" type("image/webp"),
+        "../images/banner-light-small.jpg" type("image/jpeg")
+    );
+}
+
 .theme--dark {
     --lightness1: #000000;
     --lightness2: #242424;
@@ -31,30 +58,11 @@ html {
     --pastel3: #4d4100;
     --pastel4: #4d2900;
     --pastel5: #4d0000;
-}
-
-.theme {
-    padding: 5.5rem 2.5rem;
-    background-color: var(--lightness2);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.theme--light {
-    background-image: url("../images/banner-light-small.jpg");
-    background-image: image-set(
-            "../images/banner-light-small.avif" type("image/avif"),
-            "../images/banner-light-small.webp" type("image/webp"),
-            "../images/banner-light-small.jpg" type("image/jpeg")
-    );
-}
-
-.theme--dark {
     background-image: url("../images/banner-dark-small.jpg");
     background-image: image-set(
-            "../images/banner-dark-small.avif" type("image/avif"),
-            "../images/banner-dark-small.webp" type("image/webp"),
-            "../images/banner-dark-small.jpg" type("image/jpeg")
+        "../images/banner-dark-small.avif" type("image/avif"),
+        "../images/banner-dark-small.webp" type("image/webp"),
+        "../images/banner-dark-small.jpg" type("image/jpeg")
     );
 }
 
@@ -66,8 +74,123 @@ html {
     background: var(--lightness1);
 }
 
+.header {
+    position: relative;
+    text-align: center;
+}
+
 .header__title {
+    padding: 8rem 0 3rem 0;
     margin: 0;
+    font-size: 5rem;
+    font-weight: 900;
+    letter-spacing: 0.7rem;
+    text-transform: uppercase;
+}
+
+.header__imgPlus {
+    width: 1.7rem;
+    height: 1.7rem;
+    margin-right: 1rem;
+}
+
+.header__btnTheme {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    border: none;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.theme--light .header__btnTheme {
+    background: var(--lightness2) center center / 1.5rem url("../images/icon-moon.svg") no-repeat;
+}
+
+.theme--dark .header__btnTheme {
+    background: var(--lightness2) center center / 2.1rem url("../images/icon-sun.svg") no-repeat;
+}
+
+.theme--light .header__btnTheme:hover,
+.theme--dark .header__btnTheme:hover {
+    background-color: var(--lightness3);
+}
+
+.header__control {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+.header__subtitleLeft,
+.header__subtitleRight {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+}
+
+.header__controlLeft {
+    margin-right: 1.5rem;
+    text-align: left;
+}
+
+.header__controlRight {
+    margin-left: 1.5rem;
+    text-align: right;
+}
+
+.header__controlButtonsLeft,
+.header__controlButtonsRight {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 0.7rem;
+}
+
+.header__controlButtonsLeft {
+    justify-content: flex-start;
+}
+
+.header__controlButtonsRight {
+    justify-content: flex-end;
+}
+
+.btn--small,
+.btn--big {
+    padding: 1.2rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    color: var(--lightness4);
+    background: var(--lightness2);
+    font-size: 1.2rem;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.btn--small:hover,
+.btn--big:hover {
+    background: var(--lightness3);
+    cursor: pointer;
+}
+
+.btn--big {
+    padding: 1.5rem 2rem;
+    font-size: 1.6rem;
+    letter-spacing: 0.3rem;
+}
+
+@media only all and (min-width: 641px) {
+
+    .header__title {
+        padding-top: 6rem;
+        font-size: 6rem;
+        letter-spacing: 1.2rem;
+    }
+
 }
 
 @media only all and (min-width: 751px) {
@@ -75,18 +198,18 @@ html {
     .theme--light {
         background-image: url("../images/banner-light-big.jpg");
         background-image: image-set(
-                "../images/banner-light-big.avif" type("image/avif"),
-                "../images/banner-light-big.webp" type("image/webp"),
-                "../images/banner-light-big.jpg" type("image/jpeg")
+            "../images/banner-light-big.avif" type("image/avif"),
+            "../images/banner-light-big.webp" type("image/webp"),
+            "../images/banner-light-big.jpg" type("image/jpeg")
         );
     }
 
     .theme--dark {
         background-image: url("../images/banner-dark-big.jpg");
         background-image: image-set(
-                "../images/banner-dark-big.avif" type("image/avif"),
-                "../images/banner-dark-big.webp" type("image/webp"),
-                "../images/banner-dark-big.jpg" type("image/jpeg")
+            "../images/banner-dark-big.avif" type("image/avif"),
+            "../images/banner-dark-big.webp" type("image/webp"),
+            "../images/banner-dark-big.jpg" type("image/jpeg")
         );
     }
 
