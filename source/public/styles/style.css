@@ -34,7 +34,8 @@ html {
     background-size: cover;
 }
 
-.notesApp {
+.notesApp,
+.editNote {
     max-width: 100rem;
     border-radius: 1rem;
     margin: 0 auto;
@@ -97,7 +98,8 @@ html {
 }
 
 .header__subtitleLeft,
-.header__subtitleRight {
+.header__subtitleRight,
+.editNote__label {
     margin-bottom: 1rem;
     font-size: 1.8rem;
     font-weight: 700;
@@ -115,7 +117,8 @@ html {
 }
 
 .header__controlButtonsLeft,
-.header__controlButtonsRight {
+.header__controlButtonsRight,
+.editNote__controlButtons {
     display: flex;
     flex-flow: row wrap;
     gap: 0.7rem;
@@ -162,7 +165,8 @@ html {
     color: var(--lightness3);
 }
 
-.note__checkboxStatus {
+.note__checkboxStatus,
+.editNoteFinished {
     width: 1.9rem;
     height: 1.9rem;
     border: 0.15rem solid var(--lightness3);
@@ -291,8 +295,66 @@ html {
     letter-spacing: 0.3rem;
 }
 
+.editNoteHidden {
+    display: none;
+}
+
+.editNote {
+    position: absolute;
+    top: 5.5rem;
+    right: 2.5rem;
+    left: 2.5rem;
+    margin: auto;
+}
+
+.editNote__form {
+    padding: 4rem 2rem 2rem;
+}
+
+.editNote__fields {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.editNote__title,
+.editNoteDueDate,
+.editNoteDescription {
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    margin-bottom: 5rem;
+    font: inherit;
+    color: var(--lightness4);
+    background: var(--lightness2);
+}
+
+.editNote__rangeGroup {
+    display: grid;
+    grid-template: auto / 1fr 2fr 1fr;
+    align-items: center;
+    grid-column-gap: 2rem;
+    padding: 4rem 1rem 5rem;
+    text-align: center;
+}
+
+.editNote__importanceOutput {
+    grid-column: span 3;
+    padding: 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.editNoteFinished {
+    align-self: flex-start;
+    margin: 0 0 5rem;
+}
+
+.editNoteDescription {
+    height: 15rem;
+}
+
 .theme--light {
-    background-image: url("../images/banner-light-small.jpg");
+    background-image: url("../images/banner-light-small.jpg"); /* Fallback «image-set» */
     background-image: image-set(
             url("../images/banner-light-small.avif") type("image/avif"),
             url("../images/banner-light-small.webp") type("image/webp"),
@@ -330,6 +392,10 @@ html {
         background: url("../images/icon-fire-lightgray.svg") right center / 2rem repeat-x content-box;
     }
 
+    .editNoteFinished:checked {
+        background: var(--lightness3) url("../images/icon-checkmark-black.svg") center center / 1.2rem no-repeat;
+    }
+
 }
 
 .theme--dark {
@@ -343,7 +409,7 @@ html {
     --color4: #4d2900;
     --color5: #4d0000;
 
-    background-image: url("../images/banner-dark-small.jpg");
+    background-image: url("../images/banner-dark-small.jpg"); /* Fallback «image-set» */
     background-image: image-set(
             url("../images/banner-dark-small.avif") type("image/avif"),
             url("../images/banner-dark-small.webp") type("image/webp"),
@@ -379,6 +445,10 @@ html {
 
     .note--disabledImportance5 .note__importance {
         background: url("../images/icon-fire-darkgray.svg") right center / 2rem repeat-x content-box;
+    }
+
+    .editNoteFinished:checked {
+        background: var(--lightness3) url("../images/icon-checkmark-white.svg") center center / 1.2rem no-repeat;
     }
 
 }
@@ -421,20 +491,20 @@ html {
 
 @media only all and (width >= 750px) {
     .theme--light {
-        background-image: url("../images/banner-light-big.jpg");
+        background-image: url("../images/banner-light-big.jpg"); /* Fallback «image-set» */
         background-image: image-set(
-            "../images/banner-light-big.avif" type("image/avif"),
-            "../images/banner-light-big.webp" type("image/webp"),
-            "../images/banner-light-big.jpg" type("image/jpeg")
+            url("../images/banner-light-big.avif") type("image/avif"),
+            url("../images/banner-light-big.webp") type("image/webp"),
+            url("../images/banner-light-big.jpg") type("image/jpeg")
         );
     }
 
     .theme--dark {
-        background-image: url("../images/banner-dark-big.jpg");
+        background-image: url("../images/banner-dark-big.jpg"); /* Fallback «image-set» */
         background-image: image-set(
-            "../images/banner-dark-big.avif" type("image/avif"),
-            "../images/banner-dark-big.webp" type("image/webp"),
-            "../images/banner-dark-big.jpg" type("image/jpeg")
+            url("../images/banner-dark-big.avif") type("image/avif"),
+            url("../images/banner-dark-big.webp") type("image/webp"),
+            url("../images/banner-dark-big.jpg") type("image/jpeg")
         );
     }
 
