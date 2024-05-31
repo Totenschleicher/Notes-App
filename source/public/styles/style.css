@@ -9,22 +9,21 @@
 
 */
 
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
 
 :root {
-    --lightness1: #ffffff;
+    --lightness1: #fff;
     --lightness2: #f2f2f2;
-    --lightness3: #cccccc;
-    --lightness4: #000000;
+    --lightness3: #ccc;
+    --lightness4: #000;
     --color1: #d9f9ff;
     --color2: #efffd9;
     --color3: #fff9d9;
     --color4: #ffedd9;
     --color5: #ffd8d8;
-}
-
-html {
-    font-size: 62.5%;
-    scroll-behavior: smooth;
 }
 
 .theme {
@@ -33,33 +32,6 @@ html {
     background-color: var(--lightness2);
     background-repeat: no-repeat;
     background-size: cover;
-}
-
-.theme--light {
-    background-image: url("../images/banner-light-small.jpg");
-    background-image: image-set(
-        "../images/banner-light-small.avif" type("image/avif"),
-        "../images/banner-light-small.webp" type("image/webp"),
-        "../images/banner-light-small.jpg" type("image/jpeg")
-    );
-}
-
-.theme--dark {
-    --lightness1: #000000;
-    --lightness2: #242424;
-    --lightness3: #575757;
-    --lightness4: #cccccc;
-    --color1: #00414d;
-    --color2: #2c4d00;
-    --color3: #4d4100;
-    --color4: #4d2900;
-    --color5: #4d0000;
-    background-image: url("../images/banner-dark-small.jpg");
-    background-image: image-set(
-        "../images/banner-dark-small.avif" type("image/avif"),
-        "../images/banner-dark-small.webp" type("image/webp"),
-        "../images/banner-dark-small.jpg" type("image/jpeg")
-    );
 }
 
 .notesApp {
@@ -76,7 +48,7 @@ html {
 }
 
 .header__title {
-    padding: 6rem 0 2rem 0;
+    padding: 6rem 0 2rem;
     margin: 0;
     font-size: 5rem;
     font-weight: 900;
@@ -118,7 +90,7 @@ html {
 }
 
 .header__control {
-    margin: 2.5rem 0 2rem 0;
+    margin: 2.5rem 0 2rem;
     display: flex;
     justify-content: space-between;
     padding: 0 2rem;
@@ -162,7 +134,7 @@ html {
     flex-flow: column nowrap;
     justify-content: space-between;
     row-gap: 1rem;
-    padding: 2rem 2rem;
+    padding: 2rem;
     border-top: 0.1rem solid var(--lightness3);
     text-align: center;
 }
@@ -212,7 +184,7 @@ html {
 }
 
 .note__title {
-    margin: 0 0 1rem 0;
+    margin: 0 0 1rem;
     font-size: 1.6rem;
     font-weight: 700;
 }
@@ -262,76 +234,6 @@ html {
 
 .note--importance5 .note__importance {
     background: url("../images/icon-fire-red.svg") right center / 2rem repeat-x content-box;
-}
-
-.theme--light {
-
-    .note__date {
-        background: url("../images/icon-calendar-black.svg") left center / 1.8rem no-repeat;
-    }
-
-    .note__checkboxStatus:checked {
-        background: var(--lightness3) url("../images/icon-checkmark-white.svg") center center / 1.2rem no-repeat;
-    }
-
-    .note--disabledImportance1 .note__importance {
-        background: url("../images/icon-fire-lightgray.svg") right center / 2rem no-repeat content-box;
-    }
-
-    .note--disabledImportance2 .note__importance {
-        padding-left: 6rem;
-        background: url("../images/icon-fire-lightgray.svg") right center / 2rem repeat-x content-box;
-    }
-
-    .note--disabledImportance3 .note__importance {
-        padding-left: 4rem;
-        background: url("../images/icon-fire-lightgray.svg") right center / 2rem repeat-x content-box;
-    }
-
-    .note--disabledImportance4 .note__importance {
-        padding-left: 2rem;
-        background: url("../images/icon-fire-lightgray.svg") right center / 2rem repeat-x content-box;
-    }
-
-    .note--disabledImportance5 .note__importance {
-         background: url("../images/icon-fire-lightgray.svg") right center / 2rem repeat-x content-box;
-    }
-
-}
-
-.theme--dark {
-
-    .note__date {
-        background: url("../images/icon-calendar-lightgray.svg") left center / 1.8rem no-repeat;
-    }
-
-    .note__checkboxStatus:checked {
-        background: var(--lightness3) url("../images/icon-checkmark-black.svg") center center / 1.2rem no-repeat;
-    }
-
-    .note--disabledImportance1 .note__importance {
-        background: url("../images/icon-fire-darkgray.svg") right center / 2rem no-repeat content-box;
-    }
-
-    .note--disabledImportance2 .note__importance {
-        padding-left: 6rem;
-        background: url("../images/icon-fire-darkgray.svg") right center / 2rem repeat-x content-box;
-    }
-
-    .note--disabledImportance3 .note__importance {
-        padding-left: 4rem;
-        background: url("../images/icon-fire-darkgray.svg") right center / 2rem repeat-x content-box;
-    }
-
-    .note--disabledImportance4 .note__importance {
-        padding-left: 2rem;
-        background: url("../images/icon-fire-darkgray.svg") right center / 2rem repeat-x content-box;
-    }
-
-    .note--disabledImportance5 .note__importance {
-        background: url("../images/icon-fire-darkgray.svg") right center / 2rem repeat-x content-box;
-    }
-
 }
 
 .footer {
@@ -389,8 +291,99 @@ html {
     letter-spacing: 0.3rem;
 }
 
-@media only all and (min-width: 800px) {
+.theme--light {
+    background-image: url("../images/banner-light-small.jpg");
+    background-image: image-set(
+            url("../images/banner-light-small.avif") type("image/avif"),
+            url("../images/banner-light-small.webp") type("image/webp"),
+            url("../images/banner-light-small.jpg") type("image/jpeg")
+    );
 
+    .note__date {
+        background: url("../images/icon-calendar-black.svg") left center / 1.8rem no-repeat;
+    }
+
+    .note__checkboxStatus:checked {
+        background: var(--lightness3) url("../images/icon-checkmark-white.svg") center center / 1.2rem no-repeat;
+    }
+
+    .note--disabledImportance1 .note__importance {
+        background: url("../images/icon-fire-lightgray.svg") right center / 2rem no-repeat content-box;
+    }
+
+    .note--disabledImportance2 .note__importance {
+        padding-left: 6rem;
+        background: url("../images/icon-fire-lightgray.svg") right center / 2rem repeat-x content-box;
+    }
+
+    .note--disabledImportance3 .note__importance {
+        padding-left: 4rem;
+        background: url("../images/icon-fire-lightgray.svg") right center / 2rem repeat-x content-box;
+    }
+
+    .note--disabledImportance4 .note__importance {
+        padding-left: 2rem;
+        background: url("../images/icon-fire-lightgray.svg") right center / 2rem repeat-x content-box;
+    }
+
+    .note--disabledImportance5 .note__importance {
+        background: url("../images/icon-fire-lightgray.svg") right center / 2rem repeat-x content-box;
+    }
+
+}
+
+.theme--dark {
+    --lightness1: #000;
+    --lightness2: #242424;
+    --lightness3: #575757;
+    --lightness4: #ccc;
+    --color1: #00414d;
+    --color2: #2c4d00;
+    --color3: #4d4100;
+    --color4: #4d2900;
+    --color5: #4d0000;
+
+    background-image: url("../images/banner-dark-small.jpg");
+    background-image: image-set(
+            url("../images/banner-dark-small.avif") type("image/avif"),
+            url("../images/banner-dark-small.webp") type("image/webp"),
+            url("../images/banner-dark-small.jpg") type("image/jpeg")
+    );
+
+    .note__date {
+        background: url("../images/icon-calendar-lightgray.svg") left center / 1.8rem no-repeat;
+    }
+
+    .note__checkboxStatus:checked {
+        background: var(--lightness3) url("../images/icon-checkmark-black.svg") center center / 1.2rem no-repeat;
+    }
+
+    .note--disabledImportance1 .note__importance {
+        background: url("../images/icon-fire-darkgray.svg") right center / 2rem no-repeat content-box;
+    }
+
+    .note--disabledImportance2 .note__importance {
+        padding-left: 6rem;
+        background: url("../images/icon-fire-darkgray.svg") right center / 2rem repeat-x content-box;
+    }
+
+    .note--disabledImportance3 .note__importance {
+        padding-left: 4rem;
+        background: url("../images/icon-fire-darkgray.svg") right center / 2rem repeat-x content-box;
+    }
+
+    .note--disabledImportance4 .note__importance {
+        padding-left: 2rem;
+        background: url("../images/icon-fire-darkgray.svg") right center / 2rem repeat-x content-box;
+    }
+
+    .note--disabledImportance5 .note__importance {
+        background: url("../images/icon-fire-darkgray.svg") right center / 2rem repeat-x content-box;
+    }
+
+}
+
+@media only all and (width >= 800px) {
     .header__title {
         padding-top: 5rem;
         font-size: 6rem;
@@ -408,7 +401,7 @@ html {
     }
 
     .note__date {
-        margin: 0 0 1rem 0;
+        margin: 0 0 1rem;
     }
 
     .note__status {
@@ -426,8 +419,7 @@ html {
 
 }
 
-@media only all and (min-width: 750px) {
-
+@media only all and (width >= 750px) {
     .theme--light {
         background-image: url("../images/banner-light-big.jpg");
         background-image: image-set(
