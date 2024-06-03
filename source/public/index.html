@@ -13,7 +13,7 @@
     <script src="scripts/controllers/notes-controller.js" type="module"></script>
 </head>
 <body class="theme theme--light">
-    <div class="notesApp">
+    <div class="notesApp hidden"> <!-- hidden -->
         <header class="header">
             <h1 class="header__title">Notizen</h1>
             <button type="button" class="header__btnNewNote btn--big">
@@ -71,40 +71,43 @@
             </a>
         </footer>
     </div>
-    <div class="editNote editNoteHidden">
-        <header class="header">
-            <h1 class="header__title">Notizen</h1>
-            <button type="button" class="header__btnTheme"></button>
-        </header>
-        <form class="editNote__form">
-            <div class="editNote__fields">
+    <div class="editNoteContainer"> <!-- hidden -->
+        <div class="editNote">
+            <header class="header">
+                <h1 class="header__title">Notizen</h1>
+                <button type="button" class="header__btnTheme"></button>
+            </header>
+            <form class="editNote__form">
+                <div class="editNote__fields">
 
-                <label for="editNote__title" class="editNote__label">Titel</label>
-                <input type="text" id="editNote__title" class="editNote__title">
+                    <label for="editNote__title" class="editNote__label">Titel</label>
+                    <input type="text" id="editNote__title" class="editNote__title">
 
-                <label for="editNote__importance" class="editNote__label">Dringlichkeit</label>
-                <div class="editNote__rangeGroup">
-                    <label for="editNote__importance">Nicht dringend</label>
-                    <input type="range" min="1" max="5" value="1" id="editNote__importance" class="editNote__importance">
-                    <label for="editNote__importance">Sehr dringend</label>
-                    <output for="editNote__importance" class="editNote__importanceOutput">1</output>
+                    <label for="editNote__importance" class="editNote__label">Dringlichkeit</label>
+                    <div class="editNote__rangeGroup">
+                        <label for="editNote__importance">Nicht dringend</label>
+                        <input type="range" min="1" max="5" value="1" id="editNote__importance" class="editNote__importance">
+                        <label for="editNote__importance">Sehr dringend</label>
+                        <output for="editNote__importance" class="editNote__importanceOutput">1</output>
+                    </div>
+
+                    <label for="editNoteDueDate" class="editNote__label">Fälligkeitsdatum</label>
+                    <input type="date" id="editNoteDueDate" class="editNoteDueDate">
+
+                    <label for="editNoteFinished" class="editNote__label">Erledigt</label>
+                    <input type="checkbox" id="editNoteFinished" class="editNoteFinished">
+
+                    <label for="editNoteDescription" class="editNote__label">Beschreibung</label>
+                    <textarea id="editNoteDescription" class="editNoteDescription"></textarea>
+
                 </div>
-
-                <label for="editNoteDueDate" class="editNote__label">Fälligkeitsdatum</label>
-                <input type="date" id="editNoteDueDate" class="editNoteDueDate">
-
-                <label for="editNoteFinished" class="editNote__label">Erledigt</label>
-                <input type="checkbox" id="editNoteFinished" class="editNoteFinished">
-
-                <label for="editNoteDescription" class="editNote__label">Beschreibung</label>
-                <textarea id="editNoteDescription" class="editNoteDescription"></textarea>
-            </div>
-            <div class="editNote__controlButtons">
-                <button type="button" class="editNote__btnSave btn--small">Speichern</button>
-                <button type="button" class="editNote__btnSaveClose btn--small">Speichern und Schliessen</button>
-                <button type="button" class="editNote__btnCancelClose btn--small">Abbrechen und Schliessen</button>
-            </div>
-        </form>
+                <div class="editNote__controlButtons">
+                    <button type="button" class="editNote__btnSave btn--small">Speichern</button>
+                    <button type="button" class="editNote__btnSaveClose btn--small">Speichern und Schliessen</button>
+                    <button type="button" class="editNote__btnCancelClose btn--small">Abbrechen und Schliessen</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

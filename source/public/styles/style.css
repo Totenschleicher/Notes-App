@@ -34,6 +34,10 @@ html {
     background-size: cover;
 }
 
+.hidden {
+    display: none;
+}
+
 .notesApp,
 .editNote {
     max-width: 100rem;
@@ -295,16 +299,12 @@ html {
     letter-spacing: 0.3rem;
 }
 
-.editNoteHidden {
-    display: none;
-}
-
-.editNote {
+.editNoteContainer {
     position: absolute;
-    top: 5.5rem;
-    right: 2.5rem;
-    left: 2.5rem;
-    margin: auto;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 5.5rem 2.5rem;
 }
 
 .editNote__form {
@@ -354,7 +354,7 @@ html {
 }
 
 .theme--light {
-    background-image: url("../images/banner-light-small.jpg"); /* Fallback «image-set» */
+    background-image: url("../images/banner-light-small.jpg"); /* Fallback "image-set" */
     background-image: image-set(
             url("../images/banner-light-small.avif") type("image/avif"),
             url("../images/banner-light-small.webp") type("image/webp"),
@@ -409,7 +409,7 @@ html {
     --color4: #4d2900;
     --color5: #4d0000;
 
-    background-image: url("../images/banner-dark-small.jpg"); /* Fallback «image-set» */
+    background-image: url("../images/banner-dark-small.jpg"); /* Fallback "image-set" */
     background-image: image-set(
             url("../images/banner-dark-small.avif") type("image/avif"),
             url("../images/banner-dark-small.webp") type("image/webp"),
@@ -491,7 +491,7 @@ html {
 
 @media only all and (width >= 750px) {
     .theme--light {
-        background-image: url("../images/banner-light-big.jpg"); /* Fallback «image-set» */
+        background-image: url("../images/banner-light-big.jpg"); /* Fallback "image-set" */
         background-image: image-set(
             url("../images/banner-light-big.avif") type("image/avif"),
             url("../images/banner-light-big.webp") type("image/webp"),
@@ -500,7 +500,7 @@ html {
     }
 
     .theme--dark {
-        background-image: url("../images/banner-dark-big.jpg"); /* Fallback «image-set» */
+        background-image: url("../images/banner-dark-big.jpg"); /* Fallback "image-set" */
         background-image: image-set(
             url("../images/banner-dark-big.avif") type("image/avif"),
             url("../images/banner-dark-big.webp") type("image/webp"),
