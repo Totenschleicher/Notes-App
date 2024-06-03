@@ -1,5 +1,10 @@
 import toolsForm from "./tools-form.js";
+import toolsTheme from "./tools-theme.js";
 
-const newNoteForm = document.querySelector(".editNote__form");
+const editNoteForm = document.querySelector(".editNote__form");
+const btnTheme = document.querySelectorAll(".header__btnTheme");
 
-newNoteForm.addEventListener("input", toolsForm.outputRange);
+editNoteForm.addEventListener("input", toolsForm.outputRange);
+btnTheme.forEach((node) =>
+    node.addEventListener("click", toolsTheme.changeTheme),
+);

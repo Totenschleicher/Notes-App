@@ -45,6 +45,7 @@ html {
     margin: 0 auto;
     color: var(--lightness4);
     background: var(--lightness1);
+    transition: 0.3s;
 }
 
 .header {
