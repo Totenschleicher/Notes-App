@@ -12,3 +12,4 @@ btnTheme.forEach((node) =>
     node.addEventListener("click", toolsTheme.changeTheme),
 );
 editNoteForm.addEventListener("input", toolsForm.outputRange);
+editNoteForm.addEventListener("submit", toolsForm.createNewNote);

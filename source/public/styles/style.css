@@ -30,8 +30,8 @@ html {
     padding: 5.5rem 2.5rem;
     font: 400 1.6rem/1.3 Roboto, sans-serif;
     background-color: var(--lightness2);
+    background-position: center top;
     background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .notesAppContainer,
@@ -199,24 +199,27 @@ html {
 .note__message {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    min-height: 6rem;
     padding: 1rem;
     border-radius: 0.5rem;
     text-align: left;
 }
 
 .note__title {
-    margin: 0 0 1rem;
+    margin: 0.2rem 0;
     font-size: 1.6rem;
     font-weight: 700;
 }
 
 .note__text {
-    margin: 0;
+    margin: 1rem 0 0;
 }
 
 .note__importance {
     flex: 0 0 auto;
     width: 10rem;
+    min-height: 4rem;
     margin: 0 0.5rem 0 2rem;
 }
 
@@ -226,11 +229,11 @@ html {
 .note--importance4 { background: var(--color4); }
 .note--importance5 { background: var(--color5); }
 
-.note--importance1-gray,
-.note--importance2-gray,
-.note--importance3-gray,
-.note--importance4-gray,
-.note--importance5-gray {
+.note--disabledImportance1,
+.note--disabledImportance2,
+.note--disabledImportance3,
+.note--disabledImportance4,
+.note--disabledImportance5 {
     background: var(--lightness2);
 }
 
@@ -337,6 +340,10 @@ html {
 
 .editNoteDescription {
     height: 15rem;
+}
+
+.editNote__requiredText {
+    margin: -3rem 0 5rem;
 }
 
 .btn--small,
@@ -503,6 +510,10 @@ html {
 }
 
 @media only all and (width >= 750px) {
+    .theme {
+        background-size: cover;
+    }
+
     .theme--light {
         background-image: url("../images/banner-light-big.jpg"); /* Fallback "image-set" */
         background-image: image-set(

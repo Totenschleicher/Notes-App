@@ -10,7 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    <script src="scripts/controllers/notes-controller.js" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js" defer></script>
+    <script src="scripts/controllers/notes-controller.js" type="module" defer></script>
 </head>
 <body class="theme theme--light">
     <div class="notesAppContainer">
@@ -43,7 +44,7 @@
                     </div>
                 </div>
             </header>
-            <main>
+            <main class="notes">
                 <article class="note">
                     <div class="note__info">
                         <p class="note__date">In 1 Tag</p>
@@ -82,8 +83,8 @@
             <form class="editNote__form">
                 <div class="editNote__fields">
 
-                    <label for="editNote__title" class="editNote__label">Titel</label>
-                    <input type="text" id="editNote__title" class="editNote__title">
+                    <label for="editNote__title" class="editNote__label">Titel *</label>
+                    <input type="text" id="editNote__title" class="editNote__title" required>
 
                     <label for="editNote__importance" class="editNote__label">Dringlichkeit</label>
                     <div class="editNote__rangeGroup">
@@ -103,9 +104,10 @@
                     <textarea id="editNoteDescription" class="editNoteDescription"></textarea>
 
                 </div>
+                <p class="editNote__requiredText">* Pflichtfeld</p>
                 <div class="editNote__controlButtons">
-                    <button type="button" class="editNote__btnSave btn--small">Speichern</button>
-                    <button type="button" class="editNote__btnSaveClose btn--small">Speichern und Schliessen</button>
+                    <button type="reset" class="editNote__btnReset btn--small">Zurücksetzen</button>
+                    <button type="submit" class="editNote__btnSaveClose btn--small">Speichern und Schliessen</button>
                     <button type="button" class="editNote__btnCancelClose btn--small">Abbrechen und Schliessen</button>
                 </div>
             </form>
