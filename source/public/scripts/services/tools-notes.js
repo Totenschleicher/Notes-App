@@ -3,9 +3,6 @@ import notesService from "./notes-service.js";
 const notes = document.querySelector(".notes");
 
 const toolsNotes = {
-    addNote: (note) => {
-        notesService.notes.push(note);
-    },
     createId: () => {
         const { id } = notesService;
         notesService.id = id + 1;

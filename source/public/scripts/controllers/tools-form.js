@@ -1,4 +1,5 @@
 import toolsNotes from "../services/tools-notes.js";
+import notesService from "../services/notes-service.js";
 
 const description = document.querySelector(".editNoteDescription");
 const dueDate = document.querySelector(".editNoteDueDate");
@@ -13,41 +14,63 @@ const title = document.querySelector(".editNote__title");
 const toolsForm = {
     cancelClose: () => {
         toolsForm.editNoteClose();
+        setTimeout(() => editNoteForm.reset(), 300);
     },
-    createNewNote: (event) => {
+    createUpdateNote: (event) => {
         event.preventDefault();
         if (title.value !== "") {
             let valueImportance = parseInt(importance.value, 10);
             if (valueImportance < 1) {
                 valueImportance = 1;
-            } else if (valueImportance > 5) {
+            }
+            if (valueImportance > 5) {
                 valueImportance = 5;
             }
-            const valuesNewNote = {
+            const valuesNote = {
                 description: description.value,
                 dueDate: dueDate.value,
                 finished: finished.checked,
-                id: toolsNotes.createId(),
                 importance: valueImportance,
                 title: title.value,
             };
-            toolsNotes.addNote(valuesNewNote);
+            const { statusId } = editNoteContainer.dataset;
+            if (statusId === "new") {
+                valuesNote.id = toolsNotes.createId();
+                notesService.notes.push(valuesNote);
+            } else {
+                valuesNote.id = statusId;
+                notesService.notes.splice(statusId, 1, valuesNote);
+            }
             toolsNotes.renderNotes();
-            editNoteForm.reset();
             toolsForm.editNoteClose();
+            setTimeout(() => editNoteForm.reset(), 300);
         }
+    },
+    editNote: (event) => {
+        const noteId = event.target.dataset.id;
+        toolsForm.loadNote(noteId);
+        toolsForm.editNoteOpen(noteId);
     },
     editNoteClose: () => {
         editNoteContainer.classList.add("hidden");
         notesAppContainer.classList.remove("hidden");
     },
-    editNoteOpen: () => {
+    editNoteOpen: (statusId) => {
+        editNoteContainer.dataset.statusId = statusId;
         editNoteContainer.classList.remove("hidden");
         notesAppContainer.classList.add("hidden");
         toolsForm.outputRange();
     },
+    loadNote: (noteId) => {
+        const [note] = notesService.notes.slice(noteId);
+        description.value = note.description;
+        dueDate.value = note.dueDate;
+        finished.checked = note.finished;
+        importance.value = note.importance;
+        title.value = note.title;
+    },
     newNote: () => {
-        toolsForm.editNoteOpen();
+        toolsForm.editNoteOpen("new");
     },
     outputRange: () => {
         output.value = parseInt(importance.value, 10);
