@@ -36,7 +36,7 @@ const toolsNotes = {
         let notesCode = "";
         notesService.notes.forEach((note) => {
             const textStatus = note.finished === false ? "Offen" : "Erledigt";
-            const checkboxChecked = note.finished === false ? "checked" : "";
+            const checkboxChecked = note.finished === false ? "" : "checked";
             const styleDisabled =
                 note.finished === false ? "importance" : "disabledImportance";
             const description =

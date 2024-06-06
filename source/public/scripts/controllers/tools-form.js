@@ -38,8 +38,11 @@ const toolsForm = {
                 valuesNote.id = toolsNotes.createId();
                 notesService.notes.push(valuesNote);
             } else {
-                valuesNote.id = statusId;
-                notesService.notes.splice(statusId, 1, valuesNote);
+                valuesNote.id = parseInt(statusId, 10);
+                const findIndex = notesService.notes.findIndex(
+                    (value) => value.id === parseInt(statusId, 10),
+                );
+                notesService.notes.splice(findIndex, 1, valuesNote);
             }
             toolsNotes.renderNotes();
             toolsForm.editNoteClose();
