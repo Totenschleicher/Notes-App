@@ -33,33 +33,36 @@ const toolsForm = {
                 importance: valueImportance,
                 title: title.value,
             };
-            const { statusId } = editNoteContainer.dataset;
-            if (statusId === "new") {
+            const { editNoteId } = notesService;
+            if (notesService.newNote === true) {
                 valuesNote.id = toolsNotes.createId();
                 notesService.notes.push(valuesNote);
-            } else {
-                valuesNote.id = parseInt(statusId, 10);
+            } else if (editNoteId >= 0) {
+                valuesNote.id = editNoteId;
                 const findIndex = notesService.notes.findIndex(
-                    (value) => value.id === parseInt(statusId, 10),
+                    (value) => value.id === editNoteId,
                 );
                 notesService.notes.splice(findIndex, 1, valuesNote);
             }
+            notesService.newNote = false;
+            notesService.editNoteId = -1;
             toolsNotes.renderNotes();
             toolsForm.editNoteClose();
             setTimeout(() => editNoteForm.reset(), 300);
         }
     },
     editNote: (event) => {
-        const noteId = event.target.dataset.id;
+        const noteId = parseInt(event.target.dataset.id, 10);
         toolsForm.loadNote(noteId);
-        toolsForm.editNoteOpen(noteId);
+        toolsForm.editNoteOpen(false, noteId);
     },
     editNoteClose: () => {
         editNoteContainer.classList.add("hidden");
         notesAppContainer.classList.remove("hidden");
     },
-    editNoteOpen: (statusId) => {
-        editNoteContainer.dataset.statusId = statusId;
+    editNoteOpen: (newNote, noteId) => {
+        notesService.newNote = newNote;
+        notesService.editNoteId = noteId;
         editNoteContainer.classList.remove("hidden");
         notesAppContainer.classList.add("hidden");
         toolsForm.outputRange();
@@ -73,7 +76,7 @@ const toolsForm = {
         title.value = note.title;
     },
     newNote: () => {
-        toolsForm.editNoteOpen("new");
+        toolsForm.editNoteOpen(true, -1);
     },
     outputRange: () => {
         output.value = parseInt(importance.value, 10);
