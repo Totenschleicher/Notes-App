@@ -1,6 +1,7 @@
 import tools from "./tools.js";
 import toolsForm from "./tools-form.js";
 import toolsTheme from "./tools-theme.js";
+import toolsExchangeData from "../services/tools-exchange-data.js";
 
 const btnCancelClose = document.querySelector(".editNote__btnCancelClose");
 const btnNewNote = document.querySelector(".header__btnNewNote");
@@ -19,3 +20,5 @@ notes.addEventListener(
     "click",
     tools.delegate(".note__btnEdit", toolsForm.editNote),
 );
+
+toolsExchangeData.loadNotes();

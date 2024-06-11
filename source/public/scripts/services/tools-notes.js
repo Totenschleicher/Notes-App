@@ -4,16 +4,19 @@ const notes = document.querySelector(".notes");
 
 const toolsNotes = {
     createId: () => {
-        const { id } = notesService;
-        notesService.id = id + 1;
-        return id;
+        const { noteCounterId } = notesService;
+        notesService.noteCounterId = noteCounterId + 1;
+        return noteCounterId;
     },
     createTextDate: (date) => {
         if (date === "") {
             return "Irgendwann";
         }
+        // eslint-disable-next-line no-undef
         const dueDate = moment(date, "YYYY-MM-DD");
+        // eslint-disable-next-line no-undef
         const current = moment().startOf("day");
+        // eslint-disable-next-line no-undef
         const difference = moment.duration(dueDate.diff(current)).asDays();
         if (difference === 0) {
             return "Heute";
