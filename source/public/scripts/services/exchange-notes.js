@@ -8,9 +8,6 @@ const exchangeNotes = {
             const data = await response.json();
             notesService.notes = data.notes;
             notesService.noteCounterId = data.noteCounterId;
-            notesService.newNote = data.newNote;
-            notesService.editNoteId = data.editNoteId;
-            notesService.theme = data.theme;
             toolsNotes.renderNotes();
         } catch (error) {
             // eslint-disable-next-line no-console
@@ -18,22 +15,22 @@ const exchangeNotes = {
         }
     },
     saveNotes: async () => {
+        const notes = {};
+        notes.notes = notesService.notes;
+        notes.noteCounterId = notesService.noteCounterId;
         try {
             const response = await fetch("http://localhost:3000/notes", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(notesService),
+                body: JSON.stringify(notes),
             });
             const data = await response.json();
             if (
                 JSON.stringify(data.notes) !==
                     JSON.stringify(notesService.notes) ||
-                data.noteCounterId !== notesService.noteCounterId ||
-                data.newNote !== notesService.newNote ||
-                data.editNoteId !== notesService.editNoteId ||
-                data.theme !== notesService.theme
+                data.noteCounterId !== notesService.noteCounterId
             ) {
                 // eslint-disable-next-line no-console
                 console.error(data);

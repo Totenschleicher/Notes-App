@@ -8,7 +8,7 @@ export const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get("/notes", notesController.showNotesData);
-app.post("/notes", notesController.createNotesData);
+app.get("/notes", notesController.showNotes);
+app.post("/notes", notesController.createNotes);
 app.get("/theme", notesController.showTheme);
 app.put("/theme", notesController.updateTheme);
