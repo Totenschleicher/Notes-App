@@ -10,3 +10,5 @@ app.use(cors());
 
 app.get("/notes", notesController.showNotesData);
 app.post("/notes", notesController.createNotesData);
+app.get("/theme", notesController.showTheme);
+app.put("/theme", notesController.updateTheme);

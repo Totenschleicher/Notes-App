@@ -1,4 +1,4 @@
-import notesService from "./notes-service.js";
+import notesService from "../services/notes-service.js";
 
 const notes = document.querySelector(".notes");
 

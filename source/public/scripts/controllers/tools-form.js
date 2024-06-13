@@ -1,6 +1,6 @@
-import toolsNotes from "../services/tools-notes.js";
+import toolsNotes from "./tools-notes.js";
 import notesService from "../services/notes-service.js";
-import toolsExchangeData from "../services/tools-exchange-data.js";
+import exchangeNotes from "../services/exchange-notes.js";
 
 const description = document.querySelector(".editNoteDescription");
 const dueDate = document.querySelector(".editNoteDueDate");
@@ -50,7 +50,7 @@ const toolsForm = {
             toolsNotes.renderNotes();
             toolsForm.editNoteClose();
             setTimeout(() => editNoteForm.reset(), 300);
-            toolsExchangeData.saveNotes();
+            exchangeNotes.saveNotes();
         }
     },
     editNote: (event) => {

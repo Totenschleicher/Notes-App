@@ -1,7 +1,7 @@
 import notesService from "./notes-service.js";
-import toolsNotes from "./tools-notes.js";
+import toolsNotes from "../controllers/tools-notes.js";
 
-const toolsExchangeData = {
+const exchangeNotes = {
     loadNotes: async () => {
         try {
             const response = await fetch("http://localhost:3000/notes");
@@ -45,4 +45,4 @@ const toolsExchangeData = {
     },
 };
 
-export default toolsExchangeData;
+export default exchangeNotes;
