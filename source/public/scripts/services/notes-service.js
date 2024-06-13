@@ -1,8 +1,7 @@
 const notesService = {
     notes: [],
-    noteCounterId: 0,
     newNote: false,
-    editNoteId: -1,
+    editNoteId: "",
 };
 
 export default notesService;

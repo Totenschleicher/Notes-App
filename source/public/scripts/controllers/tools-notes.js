@@ -1,13 +1,10 @@
+/* eslint-disable no-underscore-dangle */
 import notesService from "../services/notes-service.js";
+import exchangeNotes from "../services/exchange-notes.js";
 
 const notes = document.querySelector(".notes");
 
 const toolsNotes = {
-    createId: () => {
-        const { noteCounterId } = notesService;
-        notesService.noteCounterId = noteCounterId + 1;
-        return noteCounterId;
-    },
     createTextDate: (date) => {
         if (date === "") {
             return "Irgendwann";
@@ -35,7 +32,8 @@ const toolsNotes = {
         }
         return "Irgendwann";
     },
-    renderNotes: () => {
+    renderNotes: async () => {
+        await exchangeNotes.loadNotes();
         let notesCode = "";
         notesService.notes.forEach((note) => {
             const textStatus = note.finished === false ? "Offen" : "Erledigt";
@@ -64,7 +62,7 @@ const toolsNotes = {
                         <div class="note__importance"></div>
                     </div>
                     <div>
-                        <button type="button" class="note__btnEdit btn--small" data-id="${note.id}">
+                        <button type="button" class="note__btnEdit btn--small" data-id="${note._id}">
                             Bearbeiten
                         </button>
                     </div>

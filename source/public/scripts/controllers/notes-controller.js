@@ -1,6 +1,6 @@
 import tools from "./tools.js";
 import toolsForm from "./tools-form.js";
-import exchangeNotes from "../services/exchange-notes.js";
+import toolsNotes from "./tools-notes.js";
 
 const btnCancelClose = document.querySelector(".editNote__btnCancelClose");
 const btnNewNote = document.querySelector(".header__btnNewNote");
@@ -16,4 +16,4 @@ notes.addEventListener(
     tools.delegate(".note__btnEdit", toolsForm.editNote),
 );
 
-exchangeNotes.loadNotes();
+toolsNotes.renderNotes();

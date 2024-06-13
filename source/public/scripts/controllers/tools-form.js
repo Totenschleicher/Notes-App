@@ -17,7 +17,7 @@ const toolsForm = {
         toolsForm.editNoteClose();
         setTimeout(() => editNoteForm.reset(), 300);
     },
-    createUpdateNote: (event) => {
+    createUpdateNote: async (event) => {
         event.preventDefault();
         if (title.value !== "") {
             let valueImportance = parseInt(importance.value, 10);
@@ -31,30 +31,26 @@ const toolsForm = {
                 description: description.value,
                 dueDate: dueDate.value,
                 finished: finished.checked,
+                hidden: false,
                 importance: valueImportance,
                 title: title.value,
+                type: "note",
             };
             const { editNoteId } = notesService;
             if (notesService.newNote === true) {
-                valuesNote.id = toolsNotes.createId();
-                notesService.notes.push(valuesNote);
-            } else if (editNoteId >= 0) {
-                valuesNote.id = editNoteId;
-                const findIndex = notesService.notes.findIndex(
-                    (value) => value.id === editNoteId,
-                );
-                notesService.notes.splice(findIndex, 1, valuesNote);
+                await exchangeNotes.newNote(valuesNote);
+            } else if (editNoteId !== "") {
+                await exchangeNotes.editNote(editNoteId, valuesNote);
             }
             notesService.newNote = false;
             notesService.editNoteId = -1;
-            toolsNotes.renderNotes();
+            await toolsNotes.renderNotes();
             toolsForm.editNoteClose();
             setTimeout(() => editNoteForm.reset(), 300);
-            exchangeNotes.saveNotes();
         }
     },
     editNote: (event) => {
-        const noteId = parseInt(event.target.dataset.id, 10);
+        const noteId = event.target.dataset.id;
         toolsForm.loadNote(noteId);
         toolsForm.editNoteOpen(false, noteId);
     },
@@ -70,7 +66,8 @@ const toolsForm = {
         toolsForm.outputRange();
     },
     loadNote: (noteId) => {
-        const [note] = notesService.notes.slice(noteId);
+        // eslint-disable-next-line no-underscore-dangle
+        const note = notesService.notes.find((notes) => notes._id === noteId);
         description.value = note.description;
         dueDate.value = note.dueDate;
         finished.checked = note.finished;

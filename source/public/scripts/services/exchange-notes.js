@@ -1,40 +1,60 @@
 import notesService from "./notes-service.js";
-import toolsNotes from "../controllers/tools-notes.js";
 
 const exchangeNotes = {
-    loadNotes: async () => {
+    checkFields: (data, note) => {
+        if (
+            data.description !== note.description ||
+            data.dueDate !== note.dueDate ||
+            data.finished !== note.finished ||
+            data.hidden !== note.hidden ||
+            data.importance !== note.importance ||
+            data.title !== note.title ||
+            data.type !== note.type
+        ) {
+            // eslint-disable-next-line no-console
+            console.error(data);
+        }
+    },
+    editNote: async (noteId, note) => {
         try {
-            const response = await fetch("http://localhost:3000/notes");
+            const response = await fetch(
+                `http://localhost:3000/notes/${noteId}`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(note),
+                },
+            );
             const data = await response.json();
-            notesService.notes = data.notes;
-            notesService.noteCounterId = data.noteCounterId;
-            toolsNotes.renderNotes();
+            exchangeNotes.checkFields(data, note);
         } catch (error) {
             // eslint-disable-next-line no-console
             console.error(error);
         }
     },
-    saveNotes: async () => {
-        const notes = {};
-        notes.notes = notesService.notes;
-        notes.noteCounterId = notesService.noteCounterId;
+    loadNotes: async () => {
+        try {
+            const response = await fetch("http://localhost:3000/notes");
+            const data = await response.json();
+            notesService.notes = data;
+        } catch (error) {
+            // eslint-disable-next-line no-console
+            console.error(error);
+        }
+    },
+    newNote: async (note) => {
         try {
             const response = await fetch("http://localhost:3000/notes", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(notes),
+                body: JSON.stringify(note),
             });
             const data = await response.json();
-            if (
-                JSON.stringify(data.notes) !==
-                    JSON.stringify(notesService.notes) ||
-                data.noteCounterId !== notesService.noteCounterId
-            ) {
-                // eslint-disable-next-line no-console
-                console.error(data);
-            }
+            exchangeNotes.checkFields(data, note);
         } catch (error) {
             // eslint-disable-next-line no-console
             console.error(error);

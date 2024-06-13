@@ -1,4 +1,4 @@
-import { app } from "./notes-routes.js";
+import { app } from "./routes.js";
 
 const port = 3000;
 
