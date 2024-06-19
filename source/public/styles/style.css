@@ -150,6 +150,37 @@ html {
     justify-content: flex-end;
 }
 
+.header__btnName,
+.header__btnDueDate,
+.header__btnCreationDate,
+.header__btnImportance {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.header__sortIcon {
+    position: absolute;
+    top: 2.8rem;
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    margin: 0 auto;
+    transition: transform 0.5s ease-in-out;
+}
+
+.theme--light .header__sortIcon {
+    background: url("../images/icon-arrow-black.svg") center center / 1.6rem no-repeat;
+}
+
+.theme--dark .header__sortIcon {
+    background: url("../images/icon-arrow-lightgray.svg") center center / 1.6rem no-repeat;
+}
+
+.header__sortIconDown {
+    transform: rotate(540deg);
+}
+
 .note {
     display: flex;
     flex-flow: column nowrap;

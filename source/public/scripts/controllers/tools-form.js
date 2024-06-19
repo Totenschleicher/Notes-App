@@ -28,6 +28,7 @@ const toolsForm = {
                 valueImportance = 5;
             }
             const valuesNote = {
+                creationDate: new Date().getTime(),
                 description: description.value,
                 dueDate: dueDate.value,
                 finished: finished.checked,
