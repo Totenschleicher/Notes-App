@@ -44,7 +44,7 @@ const toolsForm = {
                 await exchangeNotes.editNote(editNoteId, valuesNote);
             }
             notesService.newNote = false;
-            notesService.editNoteId = -1;
+            notesService.editNoteId = "";
             await toolsNotes.renderNotes();
             toolsForm.editNoteClose();
             setTimeout(() => editNoteForm.reset(), 300);

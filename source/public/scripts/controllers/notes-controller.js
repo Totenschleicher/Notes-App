@@ -37,6 +37,21 @@ headerControl.addEventListener(
         toolsNotes.sort("importance");
     }),
 );
+headerControl.addEventListener(
+    "click",
+    tools.delegate(".header__btnOpen", () => {
+        toolsNotes.filterNotes("open");
+    }),
+);
+headerControl.addEventListener(
+    "click",
+    tools.delegate(".header__btnCompleted", () => {
+        toolsNotes.filterNotes("completed");
+    }),
+);
+headerControl.addEventListener("mousedown", (event) => {
+    event.preventDefault();
+});
 notes.addEventListener(
     "click",
     tools.delegate(".note__btnEdit", toolsForm.editNote),

@@ -31,9 +31,19 @@ const notesController = {
     showNotes: async (req, res) => {
         const sort = req.query.sort || "creationDate";
         const order = req.query.order || "ascending";
+        const filter = req.query.filter || "none";
         let orderID = 1;
         if (order === "descending") {
             orderID = -1;
+        }
+        if (filter === "none") {
+            await notesService.dbFilterNone();
+        }
+        if (filter === "open") {
+            await notesService.dbFilterNotes(true);
+        }
+        if (filter === "completed") {
+            await notesService.dbFilterNotes(false);
         }
         res.send(await notesService.dbLoadNotes(sort, orderID));
     },

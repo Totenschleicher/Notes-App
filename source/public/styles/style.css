@@ -30,6 +30,7 @@ html {
     padding: 5.5rem 2.5rem;
     font: 400 1.6rem/1.3 Roboto, sans-serif;
     background-color: var(--lightness2);
+    background-size: 75rem auto;
     background-position: center top;
     background-repeat: no-repeat;
 }
@@ -292,6 +293,11 @@ html {
     background: url("../images/icon-fire-red.svg") right center / 2rem repeat-x content-box;
 }
 
+.noNote {
+    padding: 10rem 1rem 6rem;
+    text-align: center;
+}
+
 .footer {
     padding: 4rem;
     text-align: center;
@@ -403,6 +409,10 @@ html {
     padding: 1.5rem 2rem;
     font-size: 1.6rem;
     letter-spacing: 0.3rem;
+}
+
+.btn--active {
+    background: var(--lightness3);
 }
 
 .theme--light {
@@ -543,7 +553,7 @@ html {
 
 @media only all and (width >= 750px) {
     .theme {
-        background-size: cover;
+        background-size: 100% auto;
     }
 
     .theme--light {

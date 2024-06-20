@@ -1,8 +1,24 @@
 import { db } from "./datastore.js";
 
 const notesService = {
+    dbFilterNone: async () => {
+        await db.updateAsync(
+            { type: "note" },
+            { $set: { hidden: false } },
+            { multi: true },
+        );
+    },
+    dbFilterNotes: async (filter) => {
+        await notesService.dbFilterNone();
+        await db.updateAsync(
+            { finished: filter },
+            { $set: { hidden: true } },
+            { multi: true },
+        );
+    },
     dbLoadNotes: async (sort, orderID) =>
-        db.findAsync({ type: "note" }).sort({ [sort]: [orderID] }),
+        db.findAsync({ type: "note", hidden: false }).sort({ [sort]: orderID }),
+    dbLoadSort: async () => db.findOneAsync({ type: "sort" }),
     dbSaveNote: async (note) => {
         try {
             await db.insertAsync(note);
@@ -11,10 +27,6 @@ const notesService = {
             console.log(error);
         }
     },
-    dbUpdateNote: async (noteId, body) => {
-        await db.updateAsync({ _id: noteId }, { $set: body }, {});
-    },
-    dbLoadSort: async () => db.findOneAsync({ type: "sort" }),
     dbSaveSort: async (sortNotes) => {
         try {
             await db.insertAsync(sortNotes);
@@ -22,6 +34,9 @@ const notesService = {
             // eslint-disable-next-line no-console
             console.log(error);
         }
+    },
+    dbUpdateNote: async (noteId, body) => {
+        await db.updateAsync({ _id: noteId }, { $set: body }, {});
     },
     dbUpdateSort: async (sort) => {
         await db.updateAsync({ type: "sort" }, { $set: sort }, {});
