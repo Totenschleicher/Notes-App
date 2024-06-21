@@ -1,6 +1,10 @@
 import notesService from "../services/notes-service.js";
 import toolsCheck from "./tools-check.js";
 
+const filterNotes = {
+    filter: "none",
+    type: "filter",
+};
 const sortNotes = {
     sort: "creationDate",
     order: "ascending",
@@ -57,6 +61,16 @@ const notesController = {
             res.send(body);
         }
     },
+    showFilter: async (req, res) => {
+        const data = await notesService.dbLoadFilter();
+        if (data === null) {
+            await notesService.dbSaveFilter(filterNotes);
+            const newData = await notesService.dbLoadFilter();
+            res.send(newData);
+        } else {
+            res.send(data);
+        }
+    },
     showSort: async (req, res) => {
         const data = await notesService.dbLoadSort();
         if (data === null) {
@@ -65,6 +79,19 @@ const notesController = {
             res.send(newData);
         } else {
             res.send(data);
+        }
+    },
+    updateFilter: async (req, res) => {
+        const { body } = req;
+        if (
+            toolsCheck.emptyObject(body) ||
+            toolsCheck.noObject(body) ||
+            toolsCheck.noObjectProperty(body, "filter")
+        ) {
+            res.sendStatus(400);
+        } else {
+            await notesService.dbUpdateFilter(body);
+            res.send(body);
         }
     },
     updateSort: async (req, res) => {

@@ -34,10 +34,20 @@ const exchangeNotes = {
             console.error(error);
         }
     },
-    loadNotes: async (sort, finished = "none") => {
+    loadFilter: async () => {
+        try {
+            const response = await fetch("http://localhost:3000/filter");
+            const data = await response.json();
+            notesService.filterNotes.filter = data.filter;
+        } catch (error) {
+            // eslint-disable-next-line no-console
+            console.error(error);
+        }
+    },
+    loadNotes: async (sort, filter = "none") => {
         try {
             const response = await fetch(
-                `http://localhost:3000/notes?sort=${sort.sort}&order=${sort.order}&filter=${finished}`,
+                `http://localhost:3000/notes?sort=${sort.sort}&order=${sort.order}&filter=${filter.filter}`,
             );
             const data = await response.json();
             notesService.notes = data;
@@ -68,6 +78,25 @@ const exchangeNotes = {
             });
             const data = await response.json();
             exchangeNotes.checkFields(data, note);
+        } catch (error) {
+            // eslint-disable-next-line no-console
+            console.error(error);
+        }
+    },
+    saveFilter: async (filter) => {
+        try {
+            const response = await fetch("http://localhost:3000/filter", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(filter),
+            });
+            const data = await response.json();
+            if (data.filter !== filter.filter) {
+                // eslint-disable-next-line no-console
+                console.error(data);
+            }
         } catch (error) {
             // eslint-disable-next-line no-console
             console.error(error);

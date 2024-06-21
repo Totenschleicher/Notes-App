@@ -1,6 +1,6 @@
 const notesService = {
     editNoteId: "",
-    filterNotes: "none",
+    filterNotes: {},
     newNote: false,
     notes: [],
     sortNotes: {},

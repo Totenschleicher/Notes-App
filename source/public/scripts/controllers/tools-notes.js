@@ -39,19 +39,23 @@ const toolsNotes = {
         return "Irgendwann";
     },
     filterNotes: async (finished) => {
-        const btnNode = finished === "open" ? btnOpen : btnComplete;
-        const btnNodeOther = finished === "open" ? btnComplete : btnOpen;
-        if (notesService.filterNotes === finished) {
-            notesService.filterNotes = "none";
-            await toolsNotes.renderNotes();
-            btnNode.classList.remove("btn--active");
+        if (notesService.filterNotes.filter === finished) {
+            notesService.filterNotes.filter = "none";
         } else {
-            if (notesService.filterNotes !== "none") {
-                btnNodeOther.classList.remove("btn--active");
-            }
-            notesService.filterNotes = finished;
-            await toolsNotes.renderNotes();
-            btnNode.classList.add("btn--active");
+            notesService.filterNotes.filter = finished;
+        }
+        await exchangeNotes.saveFilter(notesService.filterNotes);
+        await toolsNotes.renderNotes();
+    },
+    filterShow: () => {
+        btnComplete.classList.remove("btn--active");
+        btnOpen.classList.remove("btn--active");
+        const { filter } = notesService.filterNotes;
+        if (filter === "open") {
+            btnOpen.classList.add("btn--active");
+        }
+        if (filter === "completed") {
+            btnComplete.classList.add("btn--active");
         }
     },
     renderNotes: async () => {
@@ -102,6 +106,7 @@ const toolsNotes = {
             `;
                 notes.innerHTML = notesCode;
             });
+            toolsNotes.filterShow();
             toolsNotes.sortShow();
         }
     },

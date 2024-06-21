@@ -57,4 +57,7 @@ notes.addEventListener(
     tools.delegate(".note__btnEdit", toolsForm.editNote),
 );
 
-exchangeNotes.loadSort().then(() => toolsNotes.renderNotes());
+exchangeNotes
+    .loadSort()
+    .then(() => exchangeNotes.loadFilter())
+    .then(() => toolsNotes.renderNotes());
