@@ -52,7 +52,7 @@ html {
     visibility: visible;
     opacity: 1;
     transform: scale(1);
-    transition: 0.5s 0.3s;
+    transition: 0.3s 0.2s;
 }
 
 .notesAppContainer.hidden,
@@ -66,7 +66,7 @@ html {
     visibility: hidden;
     opacity: 0;
     transform: scale(0.3);
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .notesApp,
@@ -198,6 +198,17 @@ html {
 
 .header__sortIconDown {
     transform: rotate(540deg);
+}
+
+.notesContainer {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.notesContainer.hidden {
+    visibility: hidden;
+    opacity: 0;
 }
 
 .note {

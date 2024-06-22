@@ -45,7 +45,7 @@ const toolsForm = {
             }
             notesService.newNote = false;
             notesService.editNoteId = "";
-            await toolsNotes.renderNotes();
+            await toolsNotes.renderNotes(false);
             toolsForm.editNoteClose();
             setTimeout(() => editNoteForm.reset(), 300);
         }
