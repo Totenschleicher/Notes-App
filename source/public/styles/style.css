@@ -172,32 +172,37 @@ html {
 .header__btnName,
 .header__btnDueDate,
 .header__btnCreationDate,
-.header__btnImportance {
+.header__btnImportance,
+.header__btnOpen,
+.header__btnCompleted {
     position: relative;
     display: flex;
     justify-content: center;
 }
 
-.header__sortIcon {
+.header__btnNameIcon,
+.header__btnDueDateIcon,
+.header__btnCreationDateIcon,
+.header__btnImportanceIcon,
+.header__btnOpenIcon,
+.header__btnCompletedIcon {
+    transform: rotate(0);
+}
+
+.header__sortIcon,
+.header__filterIcon {
     position: absolute;
     top: 2.8rem;
     display: block;
     width: 2rem;
     height: 2rem;
     margin: 0 auto;
+    transform: rotate(720deg);
     transition: transform 0.5s ease-in-out;
 }
 
-.theme--light .header__sortIcon {
-    background: url("../images/icon-arrow-black.svg") center center / 1.6rem no-repeat;
-}
-
-.theme--dark .header__sortIcon {
-    background: url("../images/icon-arrow-lightgray.svg") center center / 1.6rem no-repeat;
-}
-
 .header__sortIconDown {
-    transform: rotate(540deg);
+    transform: rotate(1260deg);
 }
 
 .notesContainer {
@@ -333,6 +338,7 @@ html {
 
 .noNote {
     padding: 10rem 1rem 6rem;
+    margin: 0;
     text-align: center;
 }
 
@@ -476,6 +482,14 @@ html {
             url("../images/banner-light-small.jpg") type("image/jpeg")
     );
 
+    .header__sortIcon {
+        background: url("../images/icon-arrow-black.svg") center center / 1.6rem no-repeat;
+    }
+
+    .header__filterIcon {
+        background: url("../images/icon-tag-black.svg") center center / 1.6rem no-repeat;
+    }
+
     .note__date {
         background: url("../images/icon-calendar-black.svg") left center / 1.8rem no-repeat;
     }
@@ -538,6 +552,14 @@ html {
             url("../images/banner-dark-small.webp") type("image/webp"),
             url("../images/banner-dark-small.jpg") type("image/jpeg")
     );
+
+    .header__sortIcon {
+        background: url("../images/icon-arrow-lightgray.svg") center center / 1.6rem no-repeat;
+    }
+
+    .header__filterIcon {
+        background: url("../images/icon-tag-lightgray.svg") center center / 1.6rem no-repeat;
+    }
 
     .note__date {
         background: url("../images/icon-calendar-lightgray.svg") left center / 1.8rem no-repeat;

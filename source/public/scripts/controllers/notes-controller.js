@@ -7,6 +7,7 @@ const btnCancelClose = document.querySelector(".editNote__btnCancelClose");
 const btnNewNote = document.querySelector(".header__btnNewNote");
 const dialog = document.querySelector(".notesAppDialog");
 const editNoteForm = document.querySelector(".editNote__form");
+const btnTop = document.querySelector(".footer__btnTop");
 const headerControl = document.querySelector(".header__control");
 const notes = document.querySelector(".notes");
 
@@ -22,7 +23,19 @@ headerControl.addEventListener(
 );
 headerControl.addEventListener(
     "click",
+    tools.delegate(".header__btnNameIcon", () => {
+        toolsNotes.sort("title");
+    }),
+);
+headerControl.addEventListener(
+    "click",
     tools.delegate(".header__btnDueDate", () => {
+        toolsNotes.sort("dueDate");
+    }),
+);
+headerControl.addEventListener(
+    "click",
+    tools.delegate(".header__btnDueDateIcon", () => {
         toolsNotes.sort("dueDate");
     }),
 );
@@ -34,7 +47,19 @@ headerControl.addEventListener(
 );
 headerControl.addEventListener(
     "click",
+    tools.delegate(".header__btnCreationDateIcon", () => {
+        toolsNotes.sort("creationDate");
+    }),
+);
+headerControl.addEventListener(
+    "click",
     tools.delegate(".header__btnImportance", () => {
+        toolsNotes.sort("importance");
+    }),
+);
+headerControl.addEventListener(
+    "click",
+    tools.delegate(".header__btnImportanceIcon", () => {
         toolsNotes.sort("importance");
     }),
 );
@@ -46,7 +71,19 @@ headerControl.addEventListener(
 );
 headerControl.addEventListener(
     "click",
+    tools.delegate(".header__btnOpenIcon", () => {
+        toolsNotes.filterNotes("open");
+    }),
+);
+headerControl.addEventListener(
+    "click",
     tools.delegate(".header__btnCompleted", () => {
+        toolsNotes.filterNotes("completed");
+    }),
+);
+headerControl.addEventListener(
+    "click",
+    tools.delegate(".header__btnCompletedIcon", () => {
         toolsNotes.filterNotes("completed");
     }),
 );
@@ -78,6 +115,9 @@ dialog.addEventListener(
         toolsNotes.deleteNoteMessageDelete,
     ),
 );
+btnTop.addEventListener("mousedown", (event) => {
+    event.preventDefault();
+});
 window.addEventListener("keydown", toolsNotes.deleteNoteMessageEsc);
 
 exchangeNotes

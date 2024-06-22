@@ -3,8 +3,10 @@ import notesService from "../services/notes-service.js";
 import exchangeNotes from "../services/exchange-notes.js";
 
 const body = document.querySelector(".body");
-const btnComplete = document.querySelector(".header__btnCompleted");
+const btnCompleted = document.querySelector(".header__btnCompleted");
+const btnCompletedIcon = document.querySelector(".header__btnCompletedIcon");
 const btnOpen = document.querySelector(".header__btnOpen");
+const btnOpenIcon = document.querySelector(".header__btnOpenIcon");
 const creationDateIcon = document.querySelector(".header__btnCreationDateIcon");
 const dialog = document.querySelector(".notesAppDialog");
 const dueDateIcon = document.querySelector(".header__btnDueDateIcon");
@@ -51,14 +53,18 @@ const toolsNotes = {
         await toolsNotes.renderNotes(true);
     },
     filterShow: () => {
-        btnComplete.classList.remove("btn--active");
+        btnCompleted.classList.remove("btn--active");
+        btnCompletedIcon.classList.remove("header__filterIcon");
         btnOpen.classList.remove("btn--active");
+        btnOpenIcon.classList.remove("header__filterIcon");
         const { filter } = notesService.filterNotes;
         if (filter === "open") {
             btnOpen.classList.add("btn--active");
+            btnOpenIcon.classList.add("header__filterIcon");
         }
         if (filter === "completed") {
-            btnComplete.classList.add("btn--active");
+            btnCompleted.classList.add("btn--active");
+            btnCompletedIcon.classList.add("header__filterIcon");
         }
     },
     deleteNoteMessage: (event) => {
