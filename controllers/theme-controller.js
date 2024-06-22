@@ -12,8 +12,10 @@ const themeController = {
         if (data === null) {
             await themeService.dbSaveTheme(theme);
             const newData = await themeService.dbLoadTheme();
+            res.status(200);
             res.send(newData);
         } else {
+            res.status(200);
             res.send(data);
         }
     },
@@ -31,6 +33,7 @@ const themeController = {
                 await themeService.dbSaveTheme(theme);
             }
             await themeService.dbUpdateTheme(body);
+            res.status(200);
             res.send(body);
         }
     },

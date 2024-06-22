@@ -2,9 +2,11 @@
 import notesService from "../services/notes-service.js";
 import exchangeNotes from "../services/exchange-notes.js";
 
+const body = document.querySelector(".body");
 const btnComplete = document.querySelector(".header__btnCompleted");
 const btnOpen = document.querySelector(".header__btnOpen");
 const creationDateIcon = document.querySelector(".header__btnCreationDateIcon");
+const dialog = document.querySelector(".notesAppDialog");
 const dueDateIcon = document.querySelector(".header__btnDueDateIcon");
 const importanceIcon = document.querySelector(".header__btnImportanceIcon");
 const nameIcon = document.querySelector(".header__btnNameIcon");
@@ -58,6 +60,38 @@ const toolsNotes = {
             btnComplete.classList.add("btn--active");
         }
     },
+    deleteNoteMessage: (event) => {
+        const noteTitle = event.target.dataset.title;
+        const noteId = event.target.dataset.id;
+        dialog.innerHTML = `
+            <p><strong class="notesAppDialog__title">«${noteTitle}»</strong>wirklich löschen?</p>
+            <button type="button" class="notesAppDialog__btnCancel btn--small">Abbrechen</button>
+            &nbsp;
+            <button type="button" class="notesAppDialog__btnDelete btn--small" data-id="${noteId}">Löschen</button>
+        `;
+        dialog.showModal();
+        document.querySelector(".notesAppDialog__btnCancel").blur();
+        document.querySelector(".notesAppDialog__btnDelete").blur();
+        body.classList.add("bodyBlur");
+    },
+    deleteNoteMessageCancel: () => {
+        dialog.close();
+        body.classList.remove("bodyBlur");
+    },
+    deleteNoteMessageDelete: async (event) => {
+        await toolsNotes.deleteNote(event);
+        toolsNotes.deleteNoteMessageCancel();
+    },
+    deleteNoteMessageEsc: (event) => {
+        if (event.key === "Escape") {
+            toolsNotes.deleteNoteMessageCancel();
+        }
+    },
+    deleteNote: async (event) => {
+        const noteId = event.target.dataset.id;
+        await exchangeNotes.deleteNote(noteId);
+        await toolsNotes.renderNotes();
+    },
     renderNotes: async () => {
         await exchangeNotes.loadNotes(
             notesService.sortNotes,
@@ -95,20 +129,19 @@ const toolsNotes = {
                             <h2 class="note__title">${note.title}</h2>
                             ${description}
                         </div>
-                        <div class="note__importance"></div>
+                        <div class="note__importance">&nbsp;</div>
                     </div>
-                    <div>
-                        <button type="button" class="note__btnEdit btn--small" data-id="${note._id}">
-                            Bearbeiten
-                        </button>
+                    <div class="note__control">
+                        <button type="button" class="note__btnEdit btn--small" data-id="${note._id}" title="Bearbeiten">&nbsp;</button>
+                        <button type="button" class="note__btnDelete btn--small" data-id="${note._id}" data-title="${note.title}" title="Löschen">&nbsp;</button>
                     </div>
                 </article>
             `;
                 notes.innerHTML = notesCode;
             });
-            toolsNotes.filterShow();
-            toolsNotes.sortShow();
         }
+        toolsNotes.filterShow();
+        toolsNotes.sortShow();
     },
     sort: async (field) => {
         if (notesService.sortNotes.sort === field) {

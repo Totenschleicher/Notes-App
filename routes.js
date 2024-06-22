@@ -12,6 +12,7 @@ app.use(cors());
 app.get("/notes", notesController.showNotes);
 app.post("/notes", notesController.createNote);
 app.put("/notes/:id", notesController.updateNote);
+app.delete("/notes/:id", notesController.deleteNote);
 app.get("/filter", notesController.showFilter);
 app.put("/filter", notesController.updateFilter);
 app.get("/sort", notesController.showSort);

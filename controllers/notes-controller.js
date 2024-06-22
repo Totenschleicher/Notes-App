@@ -29,8 +29,15 @@ const notesController = {
             res.sendStatus(400);
         } else {
             await notesService.dbSaveNote(body);
+            res.status(200);
             res.send(body);
         }
+    },
+    deleteNote: async (req, res) => {
+        const noteId = req.params.id;
+        await notesService.dbDeleteNote(noteId);
+        res.status(200);
+        res.send(JSON.stringify(noteId));
     },
     showNotes: async (req, res) => {
         const sort = req.query.sort || "creationDate";
@@ -49,6 +56,7 @@ const notesController = {
         if (filter === "completed") {
             await notesService.dbFilterNotes(false);
         }
+        res.status(200);
         res.send(await notesService.dbLoadNotes(sort, orderID));
     },
     updateNote: async (req, res) => {
@@ -58,6 +66,7 @@ const notesController = {
             res.sendStatus(400);
         } else {
             await notesService.dbUpdateNote(noteId, body);
+            res.status(200);
             res.send(body);
         }
     },
@@ -66,8 +75,10 @@ const notesController = {
         if (data === null) {
             await notesService.dbSaveFilter(filterNotes);
             const newData = await notesService.dbLoadFilter();
+            res.status(200);
             res.send(newData);
         } else {
+            res.status(200);
             res.send(data);
         }
     },
@@ -76,8 +87,10 @@ const notesController = {
         if (data === null) {
             await notesService.dbSaveSort(sortNotes);
             const newData = await notesService.dbLoadSort();
+            res.status(200);
             res.send(newData);
         } else {
+            res.status(200);
             res.send(data);
         }
     },
@@ -91,6 +104,7 @@ const notesController = {
             res.sendStatus(400);
         } else {
             await notesService.dbUpdateFilter(body);
+            res.status(200);
             res.send(body);
         }
     },
@@ -105,6 +119,7 @@ const notesController = {
             res.sendStatus(400);
         } else {
             await notesService.dbUpdateSort(body);
+            res.status(200);
             res.send(body);
         }
     },

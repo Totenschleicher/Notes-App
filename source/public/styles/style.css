@@ -26,7 +26,19 @@ html {
     --color5: #ffd8d8;
 }
 
+.body {
+    transition: 0.5s;
+    overflow: hidden scroll;
+}
+
+.bodyBlur {
+    transform: scale(1.05);
+    filter: blur(1.5rem);
+    backdrop-filter: blur(1.5rem);
+}
+
 .theme {
+    min-height: 100vh;
     padding: 5.5rem 2.5rem;
     font: 400 1.6rem/1.3 Roboto, sans-serif;
     background-color: var(--lightness2);
@@ -40,15 +52,21 @@ html {
     visibility: visible;
     opacity: 1;
     transform: scale(1);
-    transition: 0.3s;
+    transition: 0.5s 0.3s;
 }
 
 .notesAppContainer.hidden,
 .editNoteContainer.hidden {
+    position: absolute;
+    top: 5.5rem;
+    left: 0;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0;
     visibility: hidden;
     opacity: 0;
-    transform: scale(0.5);
-    transition: 0.3s;
+    transform: scale(0.3);
+    transition: 0.5s;
 }
 
 .notesApp,
@@ -293,6 +311,15 @@ html {
     background: url("../images/icon-fire-red.svg") right center / 2rem repeat-x content-box;
 }
 
+.note__btnEdit,
+.note__btnDelete {
+    width: 3.9rem;
+    height: 3.9rem;
+    background-position: center center;
+    background-size: 2.2rem;
+    background-repeat: no-repeat;
+}
+
 .noNote {
     padding: 10rem 1rem 6rem;
     text-align: center;
@@ -324,14 +351,6 @@ html {
     height: 1.5rem;
     margin-top: 1rem;
     fill: var(--lightness4);
-}
-
-.editNoteContainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 5.5rem 2.5rem;
 }
 
 .editNote__form {
@@ -384,24 +403,47 @@ html {
     margin: -3rem 0 5rem;
 }
 
+.notesAppDialog {
+    position: fixed;
+    padding: 2rem 8rem 3.5rem;
+    border: none;
+    border-radius: 1rem;
+    color: var(--lightness4);
+    text-align: center;
+    background-color: var(--lightness1);
+    box-shadow: 0 0 5rem var(--lightness3);
+}
+
+.notesAppDialog__title {
+    display: block;
+    padding-bottom: 0.8rem;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.notesAppDialog__btnCancel,
+.notesAppDialog__btnDelete {
+    margin-top: 2rem;
+}
+
 .btn--small,
 .btn--big {
     padding: 1.2rem 1rem;
     border: none;
     border-radius: 0.5rem;
     color: var(--lightness4);
-    background: var(--lightness2);
+    background-color: var(--lightness2);
     font-size: 1.2rem;
     letter-spacing: 0.2rem;
     text-transform: uppercase;
-    transition: 0.3s;
+    transition: background-color 0.5s;
 }
 
 .btn--small:hover,
 .btn--small:focus,
 .btn--big:hover,
 .btn--big:focus {
-    background: var(--lightness3);
+    background-color: var(--lightness3);
     cursor: pointer;
 }
 
@@ -412,7 +454,7 @@ html {
 }
 
 .btn--active {
-    background: var(--lightness3);
+    background-color: var(--lightness3);
 }
 
 .theme--light {
@@ -456,6 +498,14 @@ html {
 
     .editNoteFinished:checked {
         background: var(--lightness3) url("../images/icon-checkmark-black.svg") center center / 1.2rem no-repeat;
+    }
+
+    .note__btnEdit {
+        background-image: url("../images/icon-edit-black.svg");
+    }
+
+    .note__btnDelete {
+        background-image: url("../images/icon-delete-black.svg");
     }
 
 }
@@ -513,6 +563,14 @@ html {
         background: var(--lightness3) url("../images/icon-checkmark-white.svg") center center / 1.2rem no-repeat;
     }
 
+    .note__btnEdit {
+        background-image: url("../images/icon-edit-lightgray.svg");
+    }
+
+    .note__btnDelete {
+        background-image: url("../images/icon-delete-lightgray.svg");
+    }
+
 }
 
 @media only all and (width >= 800px) {
@@ -547,6 +605,10 @@ html {
     .note__message {
         flex: 2 2 auto;
         margin: 0 2rem;
+    }
+
+    .note__control {
+        min-width: 8.5rem;
     }
 
 }

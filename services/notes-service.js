@@ -1,6 +1,9 @@
 import { db } from "./datastore.js";
 
 const notesService = {
+    dbDeleteNote: async (id) => {
+        await db.removeAsync({ _id: id }, {});
+    },
     dbFilterNone: async () => {
         await db.updateAsync(
             { type: "note" },

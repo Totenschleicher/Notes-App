@@ -5,6 +5,7 @@ import exchangeNotes from "../services/exchange-notes.js";
 
 const btnCancelClose = document.querySelector(".editNote__btnCancelClose");
 const btnNewNote = document.querySelector(".header__btnNewNote");
+const dialog = document.querySelector(".notesAppDialog");
 const editNoteForm = document.querySelector(".editNote__form");
 const headerControl = document.querySelector(".header__control");
 const notes = document.querySelector(".notes");
@@ -56,6 +57,28 @@ notes.addEventListener(
     "click",
     tools.delegate(".note__btnEdit", toolsForm.editNote),
 );
+notes.addEventListener(
+    "click",
+    tools.delegate(".note__btnDelete", toolsNotes.deleteNoteMessage),
+);
+notes.addEventListener("mousedown", (event) => {
+    event.preventDefault();
+});
+dialog.addEventListener(
+    "click",
+    tools.delegate(
+        ".notesAppDialog__btnCancel",
+        toolsNotes.deleteNoteMessageCancel,
+    ),
+);
+dialog.addEventListener(
+    "click",
+    tools.delegate(
+        ".notesAppDialog__btnDelete",
+        toolsNotes.deleteNoteMessageDelete,
+    ),
+);
+window.addEventListener("keydown", toolsNotes.deleteNoteMessageEsc);
 
 exchangeNotes
     .loadSort()

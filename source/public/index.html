@@ -14,93 +14,90 @@
     <script src="scripts/controllers/notes-controller.js" type="module" defer></script>
     <script src="scripts/controllers/theme-controller.js" type="module" defer></script>
 </head>
-<body class="theme">
-    <div class="notesAppContainer">
-        <div class="notesApp">
-            <header class="header">
-                <h1 class="header__title">Notizen</h1>
-                <button type="button" class="header__btnNewNote btn--big">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.612 17.612" class="header__imgPlus">
-                        <path d="M10.964,8.448V2.158a1.258,1.258,0,1,0-2.516,0v6.29H2.158a1.258,1.258,0,1,0,0,2.516h6.29v6.29a1.258,1.258,0,0,0,2.516,0v-6.29h6.29a1.258,1.258,0,0,0,0-2.516Z" transform="translate(-0.9 -0.9)"/>
-                    </svg>
-                    Neue Notiz
-                </button>
-                <button type="button" class="header__btnTheme"></button>
-                <div class="header__control">
-                    <div class="header__controlLeft">
-                        <h3 class="header__subtitleLeft">Sortieren</h3>
-                        <div class="header__controlButtonsLeft">
-                            <button type="button" class="header__btnName btn--small">Name
-                                <span class="header__btnNameIcon"></span>
-                            </button>
-                            <button type="button" class="header__btnDueDate btn--small">Fälligkeitsdatum
-                                <span class="header__btnDueDateIcon"></span>
-                            </button>
-                            <button type="button" class="header__btnCreationDate btn--small">Erstellungsdatum
-                                <span class="header__btnCreationDateIcon"></span>
-                            </button>
-                            <button type="button" class="header__btnImportance btn--small">Dringlichkeit
-                                <span class="header__btnImportanceIcon"></span>
-                            </button>
+<body class="body">
+    <div class="theme">
+        <div class="notesAppContainer">
+            <div class="notesApp">
+                <header class="header">
+                    <h1 class="header__title">Notizen</h1>
+                    <button type="button" class="header__btnNewNote btn--big">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.612 17.612" class="header__imgPlus">
+                            <path d="M10.964,8.448V2.158a1.258,1.258,0,1,0-2.516,0v6.29H2.158a1.258,1.258,0,1,0,0,2.516h6.29v6.29a1.258,1.258,0,0,0,2.516,0v-6.29h6.29a1.258,1.258,0,0,0,0-2.516Z" transform="translate(-0.9 -0.9)"/>
+                        </svg>
+                        Neue Notiz
+                    </button>
+                    <button type="button" class="header__btnTheme" title="Theme wechseln">&nbsp;</button>
+                    <div class="header__control">
+                        <div class="header__controlLeft">
+                            <h3 class="header__subtitleLeft">Sortieren</h3>
+                            <div class="header__controlButtonsLeft">
+                                <button type="button" class="header__btnName btn--small">Name
+                                    <span class="header__btnNameIcon"></span>
+                                </button>
+                                <button type="button" class="header__btnDueDate btn--small">Fälligkeitsdatum
+                                    <span class="header__btnDueDateIcon"></span>
+                                </button>
+                                <button type="button" class="header__btnCreationDate btn--small">Erstellungsdatum
+                                    <span class="header__btnCreationDateIcon"></span>
+                                </button>
+                                <button type="button" class="header__btnImportance btn--small">Dringlichkeit
+                                    <span class="header__btnImportanceIcon"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="header__controlRight">
+                            <h3 class="header__subtitleRight">Filtern</h3>
+                            <div class="header__controlButtonsRight">
+                                <button type="button" class="header__btnOpen btn--small">Offen</button>
+                                <button type="button" class="header__btnCompleted btn--small">Erledigt</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="header__controlRight">
-                        <h3 class="header__subtitleRight">Filtern</h3>
-                        <div class="header__controlButtonsRight">
-                            <button type="button" class="header__btnOpen btn--small">Offen</button>
-                            <button type="button" class="header__btnCompleted btn--small">Erledigt</button>
+                </header>
+                <main class="notes">&nbsp;</main>
+                <footer class="footer">
+                    <a href="#" class="footer__btnTop">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.292 14" class="footer__imgArrowUp">
+                            <path d="M6,4.071,2.05,8.021A1,1,0,1,1,.636,6.607L6.293.95a1,1,0,0,1,1.414,0l5.657,5.657A1,1,0,0,1,11.95,8.02L8,4.07v9.586a1,1,0,1,1-2,0V4.07Z" transform="translate(-0.343 -0.656)"/>
+                        </svg>
+                    </a>
+                </footer>
+            </div>
+        </div>
+        <div class="editNoteContainer hidden">
+            <div class="editNote">
+                <header class="header">
+                    <h1 class="header__title">Notizen</h1>
+                    <button type="button" class="header__btnTheme" title="Theme wechseln">&nbsp;</button>
+                </header>
+                <form class="editNote__form">
+                    <div class="editNote__fields">
+                        <label for="editNote__title" class="editNote__label">Titel *</label>
+                        <input type="text" id="editNote__title" class="editNote__title" required>
+                        <label for="editNote__importance" class="editNote__label">Dringlichkeit</label>
+                        <div class="editNote__rangeGroup">
+                            <label for="editNote__importance">Nicht dringend</label>
+                            <input type="range" min="1" max="5" value="1" id="editNote__importance" class="editNote__importance">
+                            <label for="editNote__importance">Sehr dringend</label>
+                            <output for="editNote__importance" class="editNote__importanceOutput">1</output>
                         </div>
+                        <label for="editNoteDueDate" class="editNote__label">Fälligkeitsdatum</label>
+                        <input type="date" id="editNoteDueDate" class="editNoteDueDate">
+                        <label for="editNoteFinished" class="editNote__label">Erledigt</label>
+                        <input type="checkbox" id="editNoteFinished" class="editNoteFinished">
+                        <label for="editNoteDescription" class="editNote__label">Beschreibung</label>
+                        <textarea id="editNoteDescription" class="editNoteDescription"></textarea>
                     </div>
-                </div>
-            </header>
-            <main class="notes"></main>
-            <footer class="footer">
-                <a href="#" class="footer__btnTop">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.292 14" class="footer__imgArrowUp">
-                        <path d="M6,4.071,2.05,8.021A1,1,0,1,1,.636,6.607L6.293.95a1,1,0,0,1,1.414,0l5.657,5.657A1,1,0,0,1,11.95,8.02L8,4.07v9.586a1,1,0,1,1-2,0V4.07Z" transform="translate(-0.343 -0.656)"/>
-                    </svg>
-                </a>
-            </footer>
-        </div>
-    </div>
-    <div class="editNoteContainer hidden">
-        <div class="editNote">
-            <header class="header">
-                <h1 class="header__title">Notizen</h1>
-                <button type="button" class="header__btnTheme"></button>
-            </header>
-            <form class="editNote__form">
-                <div class="editNote__fields">
-
-                    <label for="editNote__title" class="editNote__label">Titel *</label>
-                    <input type="text" id="editNote__title" class="editNote__title" required>
-
-                    <label for="editNote__importance" class="editNote__label">Dringlichkeit</label>
-                    <div class="editNote__rangeGroup">
-                        <label for="editNote__importance">Nicht dringend</label>
-                        <input type="range" min="1" max="5" value="1" id="editNote__importance" class="editNote__importance">
-                        <label for="editNote__importance">Sehr dringend</label>
-                        <output for="editNote__importance" class="editNote__importanceOutput">1</output>
+                    <p class="editNote__requiredText">* Pflichtfeld</p>
+                    <div class="editNote__controlButtons">
+                        <button type="reset" class="editNote__btnReset btn--small">Zurücksetzen</button>
+                        <button type="submit" class="editNote__btnSaveClose btn--small">Speichern und Schliessen</button>
+                        <button type="button" class="editNote__btnCancelClose btn--small">Abbrechen und Schliessen</button>
                     </div>
-
-                    <label for="editNoteDueDate" class="editNote__label">Fälligkeitsdatum</label>
-                    <input type="date" id="editNoteDueDate" class="editNoteDueDate">
-
-                    <label for="editNoteFinished" class="editNote__label">Erledigt</label>
-                    <input type="checkbox" id="editNoteFinished" class="editNoteFinished">
-
-                    <label for="editNoteDescription" class="editNote__label">Beschreibung</label>
-                    <textarea id="editNoteDescription" class="editNoteDescription"></textarea>
-
-                </div>
-                <p class="editNote__requiredText">* Pflichtfeld</p>
-                <div class="editNote__controlButtons">
-                    <button type="reset" class="editNote__btnReset btn--small">Zurücksetzen</button>
-                    <button type="submit" class="editNote__btnSaveClose btn--small">Speichern und Schliessen</button>
-                    <button type="button" class="editNote__btnCancelClose btn--small">Abbrechen und Schliessen</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
+        <dialog class="notesAppDialog">&nbsp;</dialog>
     </div>
 </body>
 </html>

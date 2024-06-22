@@ -15,6 +15,25 @@ const exchangeNotes = {
             console.error(data);
         }
     },
+    deleteNote: async (noteId) => {
+        try {
+            const response = await fetch(
+                `http://localhost:3000/notes/${noteId}`,
+                {
+                    method: "DELETE",
+                },
+            );
+            const data = await response.json();
+            // eslint-disable-next-line no-underscore-dangle
+            if (data !== noteId) {
+                // eslint-disable-next-line no-console
+                console.error(data);
+            }
+        } catch (error) {
+            // eslint-disable-next-line no-console
+            console.error(error);
+        }
+    },
     editNote: async (noteId, note) => {
         try {
             const response = await fetch(
@@ -44,13 +63,12 @@ const exchangeNotes = {
             console.error(error);
         }
     },
-    loadNotes: async (sort, filter = "none") => {
+    loadNotes: async (sort, filter) => {
         try {
             const response = await fetch(
                 `http://localhost:3000/notes?sort=${sort.sort}&order=${sort.order}&filter=${filter.filter}`,
             );
-            const data = await response.json();
-            notesService.notes = data;
+            notesService.notes = await response.json();
         } catch (error) {
             // eslint-disable-next-line no-console
             console.error(error);
